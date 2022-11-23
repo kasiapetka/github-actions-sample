@@ -12,16 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use NodeJS ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install npm
+      - name: Use NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version-file: 'package.json'
           cache: npm
       - name: Install node dependencies
         run: npm ci
       - name: Run tests
         run: npm test
+      - name: Version check
+        run: node --version
