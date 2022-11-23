@@ -14,6 +14,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Use NodeJS
         uses: actions/setup-node@v3
+        #https://github.com/actions/setup-node/blob/main/.github/workflows/versions.yml
         with:
           node-version-file: 'package.json'
           cache: npm
@@ -21,5 +22,18 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
-      - name: Version check
-        run: node --version
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          coverage-summary-path: ./coverage/coverage-summary.json
+          title: My Jest Coverage Comment
+          summary-title: Test summary
+          badge-title: Coverage
+          hide-comment: false
+          create-new-comment: false
+          hide-summary: false
+          junitxml-title: JUnit Title
+          junitxml-path: ./coverage/junit.xml
+          coverage-title: Coverage 
+          coverage-path: ./coverage.txt
+
