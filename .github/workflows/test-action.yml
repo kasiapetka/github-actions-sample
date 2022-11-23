@@ -1,8 +1,27 @@
 name: Testing code with Jest workflow
 on: workflow_dispatch
+
+#on:
+#  pull_request:
+#    branches:
+#      - 'master'
+#      - 'main'
+
 jobs:
-  testing-job:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Print
-        run: echo "elo"
+      - uses: actions/checkout@v2
+      - name: Use NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install npm
+        uses: actions/setup-node@v3
+        env:
+          FORCE_COLOR: 0
+        with:
+          node-version: 16.x
+          cache: npm
+      - name: Run npm ci
+        run: npm ci
