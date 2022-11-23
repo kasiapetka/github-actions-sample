@@ -28,6 +28,8 @@ jobs:
             output/test/junit.xml
             output/test/coverage.txt
             output/test/coverage-summary.json
+      - name: aaa
+        run: ls output/test && ls -la
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
