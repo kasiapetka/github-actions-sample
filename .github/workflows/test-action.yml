@@ -1,11 +1,9 @@
 name: Testing code with Jest workflow
-on: workflow_dispatch
-
-#on:
-#  pull_request:
-#    branches:
-#      - 'master'
-#      - 'main'
+on:
+ push:
+   branches:
+     - 'master'
+     - 'main'
 
 jobs:
   unit-tests:
