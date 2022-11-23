@@ -20,10 +20,18 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: |
+            output/test/junit.xml
+            output/test/coverage.txt
+            output/test/coverage-summary.json
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
-          coverage-summary-path: ./coverage/coverage-summary.json
+          coverage-summary-path: output/test/coverage-summary.json
           title: My Jest Coverage Comment
           summary-title: Test summary
           badge-title: Coverage
@@ -31,7 +39,7 @@ jobs:
           create-new-comment: false
           hide-summary: false
           junitxml-title: JUnit Title
-          junitxml-path: ./coverage/junit.xml
+          junitxml-path: output/test/junit.xml
           coverage-title: Coverage 
-          coverage-path: ./coverage.txt
+          coverage-path: output/test/coverage.txt
 
