@@ -6,7 +6,7 @@ describe("Simple expression tests", () => {
     });
     test("Check addition", () => {
         let expr = bin("+", 5, 10);
-        expect(evaluate(expr)).toBeCloseTo(15);
+        expect(evaluate(expr)).toBeCloseTo(150);
     });
     test("Check subtraction", () => {
         let expr = bin("-", 5, 10);
