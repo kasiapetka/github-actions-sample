@@ -38,16 +38,12 @@ jobs:
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
-      - name: Update README with Coverage HTML
-        run: ${{ steps.coverageComment.outputs.summaryHtml }} >> tmp && mv -f tmp ./README.md 
-
-      - name: Uyyyyyy
-        run: cat ./README.md
-      - name: Commit & Push changes in README
-        uses: actions-js/push@master
-        with:
-          message: Update coverage in README
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
+      - name: Update README.md
+        run: |
+          sed -i 's/<reponame>/'${{ github.event.repository.name }}'/' README.md
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git commit -am "Automated report"
+          git push
  # run: |
         #  sed -i "/<!-- Jest Coverage Comment:Begin -->/,/<!-- Jest Coverage Comment:End -->/c\<!-- Jest Coverage Comment:Begin -->\n\${{ steps.coverageComment.outputs.summaryHtml }}\n<!-- Jest Coverage Comment:End -->" ./README.md
