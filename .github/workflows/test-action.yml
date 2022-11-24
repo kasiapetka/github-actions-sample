@@ -26,25 +26,10 @@ jobs:
           name: coverage
           path: |
             ./coverage/coverage-summary.json
-      - name: Jest Coverage Comment
-        id: coverageComment
-        uses: MishaKav/jest-coverage-comment@main
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        id: coverage
         with:
-          hide-summary: true
-          coverage-summary-path: ./coverage/coverage-summary.json
-      - name: Check the output coverage
-        run: |
-          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
-          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
-          echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
-
-      - name: Update GitHub Profile README
-        uses: theboi/github-update-readme@v1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          output: report-markdown
+      - uses: marocchino/sticky-pull-request-comment@v2
         with:
-          header: "Hey, I'm Ryan! 👋"
-          subhead: "${{ steps.coverageComment.outputs.summaryHtml }}"
-          footer: "**Learn more about me at [ryanthe.com](https://www.ryanthe.com)!**"
-      # run: |
-        #  sed -i "/<!-- Jest Coverage Comment:Begin -->/,/<!-- Jest Coverage Comment:End -->/c\<!-- Jest Coverage Comment:Begin -->\n\${{ steps.coverageComment.outputs.summaryHtml }}\n<!-- Jest Coverage Comment:End -->" ./README.md
+          message: ${{ steps.coverage.outputs.report }}
