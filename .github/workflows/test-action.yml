@@ -32,16 +32,16 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
-      - name: Archive coverage artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: |
-            ./coverage/lcov-report/*
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './coverage/lcov-report/'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      # - name: Archive coverage artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: coverage
+      #     path: |
+      #       ./coverage/lcov-report/*
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: './coverage/lcov-report/'
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
