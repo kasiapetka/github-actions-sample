@@ -25,14 +25,12 @@ jobs:
         with:
           name: coverage
           path: |
-            ./coverage/coverage-summary.json
-      - name: Generate coverage report in README
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        id: coverage
+            ./coverage/lcov-report/*
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          test-script: npm test
-          output: report-markdown
-      - name: Update README
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: ${{ steps.coverage.outputs.report }}
+          # Upload entire repository
+          path: './coverage/lcov-report/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
