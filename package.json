@@ -19,6 +19,6 @@
     },
     "scripts": {
         "compile": "tsc",
-        "test": "jest --ci --json --coverage --testLocationInResults --outputFile=report.json --env=node --colors test"
+        "test": "jest  --env=node --colors --coverage test"
     }
 }

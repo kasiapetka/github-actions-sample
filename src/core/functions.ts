@@ -2,6 +2,7 @@ import { Expression } from "./types";
 import { assertNever } from "../utils";
 
 export function evaluate(expr: Expression): number {
+    coverageTest();
     switch (expr.type) {
         case "literal": {
             return expr.value;
@@ -28,3 +29,10 @@ export function evaluate(expr: Expression): number {
         }
     }
 }
+
+
+export function coverageTest(): number {
+
+    return 2;
+}
+
