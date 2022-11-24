@@ -25,14 +25,13 @@ jobs:
         with:
           name: coverage
           path: |
-            ./coverage/clover.xml
-            ./coverage/coverage-final.json
+            ./coverage/coverage-summary.json
       - name: Jest Coverage Comment
         id: coverageComment
         uses: MishaKav/jest-coverage-comment@main
         with:
           hide-comment: true
-          coverage-summary-path: ./coverage/coverage-final.json
+          coverage-summary-path: ./coverage/coverage-summary.json
       - name: Check the output coverage
         run: |
           echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
