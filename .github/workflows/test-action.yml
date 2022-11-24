@@ -32,8 +32,6 @@ jobs:
         with:
           test-script: npm test
           output: report-markdown
-          coverage-file: report.json
-          base-coverage-file: report.json
       - name: Update README
         uses: marocchino/sticky-pull-request-comment@v2
         with:
