@@ -26,10 +26,12 @@ jobs:
           name: coverage
           path: |
             ./coverage/coverage-summary.json
-      - uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Generate coverage report in README
+        uses: ArtiomTr/jest-coverage-report-action@v2
         id: coverage
         with:
           output: report-markdown
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - name: Update README
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: ${{ steps.coverage.outputs.report }}
