@@ -39,7 +39,7 @@ jobs:
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
       - name: Update README with Coverage HTML
-        run: sed -i  's/"HELKO"/0/g' ./README.md
+        run: ${{ steps.coverageComment.outputs.summaryHtml }} >> tmp && mv -f tmp ./README.md 
 
       - name: Uyyyyyy
         run: cat ./README.md
