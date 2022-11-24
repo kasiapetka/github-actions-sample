@@ -30,7 +30,10 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2
         id: coverage
         with:
+          test-script: npm test
           output: report-markdown
+          coverage-file: report.json
+          base-coverage-file: report.json
       - name: Update README
         uses: marocchino/sticky-pull-request-comment@v2
         with:
