@@ -39,7 +39,7 @@ jobs:
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
       - name: Update README with Coverage HTML
-        run: sed -i "HELKO" ./README.md
+        run: sed -i sed -i 's/HELKO/example/' ./README.md
       - name: Commit & Push changes in README
         uses: actions-js/push@master
         with:
