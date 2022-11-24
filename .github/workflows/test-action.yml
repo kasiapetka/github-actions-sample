@@ -38,12 +38,13 @@ jobs:
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
-      - name: Update README.md
-        run: |
-          sed  -E -i 's/<reponame>/'${{ steps.coverageComment.outputs.summaryHtml  }}'/' README.md
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git commit -am "Automated report"
-          git push
- # run: |
+      - name: Update GitHub Profile README
+        uses: theboi/github-update-readme@v1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          header: "Hey, I'm Ryan! 👋"
+          subhead: "${{ steps.coverageComment.outputs.summaryHtml }}"
+          footer: "**Learn more about me at [ryanthe.com](https://www.ryanthe.com)!**"
+      # run: |
         #  sed -i "/<!-- Jest Coverage Comment:Begin -->/,/<!-- Jest Coverage Comment:End -->/c\<!-- Jest Coverage Comment:Begin -->\n\${{ steps.coverageComment.outputs.summaryHtml }}\n<!-- Jest Coverage Comment:End -->" ./README.md
