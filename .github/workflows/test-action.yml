@@ -25,15 +25,15 @@ jobs:
         with:
           name: coverage
           path: |
-            output/test/junit.xml
-            output/test/coverage.txt
-            output/test/coverage-summary.json
-      - name: aaa
-        run: ls output/test && ls -la
+            ./coverage/junit.xml
+            ./coverage/coverage.txt
+            ./coverage/coverage-summary.json
+      - name: aaaaa
+        run: ls ./coverage
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
-          coverage-summary-path: output/test/coverage-summary.json
+          coverage-summary-path: ./coverage/coverage-summary.json
           title: My Jest Coverage Comment
           summary-title: Test summary
           badge-title: Coverage
@@ -41,7 +41,7 @@ jobs:
           create-new-comment: false
           hide-summary: false
           junitxml-title: JUnit Title
-          junitxml-path: output/test/junit.xml
+          junitxml-path: ./coverage/junit.xml
           coverage-title: Coverage 
-          coverage-path: output/test/coverage.txt
+          coverage-path: ./coverage.txt
 
