@@ -1,1 +1,1 @@
-github-actions-sample
+<reponame>
