@@ -25,23 +25,17 @@ jobs:
         with:
           name: coverage
           path: |
-            ./coverage/junit.xml
-            ./coverage/coverage.txt
-            ./coverage/coverage-summary.json
-      - name: aaaaa
-        run: ls ./coverage
+            ./coverage/clover.xml
+            ./coverage/coverage-final.json
       - name: Jest Coverage Comment
+        id: coverageComment
         uses: MishaKav/jest-coverage-comment@main
         with:
-          coverage-summary-path: ./coverage/coverage-summary.json
-          title: My Jest Coverage Comment
-          summary-title: Test summary
-          badge-title: Coverage
-          hide-comment: false
-          create-new-comment: false
-          hide-summary: false
-          junitxml-title: JUnit Title
-          junitxml-path: ./coverage/junit.xml
-          coverage-title: Coverage 
-          coverage-path: ./coverage.txt
-
+          hide-comment: true
+          coverage-summary-path: ./coverage/coverage-final.json
+      - name: Check the output coverage
+        run: |
+          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+          echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
+  
