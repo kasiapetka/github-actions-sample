@@ -40,6 +40,9 @@ jobs:
 
       - name: Update README with Coverage HTML
         run: sed -i  's/"HELKO"/0/g' ./README.md
+
+      - name: Uyyyyyy
+        run: cat ./README.md
       - name: Commit & Push changes in README
         uses: actions-js/push@master
         with:
